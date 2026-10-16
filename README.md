@@ -8,7 +8,7 @@
   <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
   <a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://awesome.re/badge.svg" alt="Awesome List"/></a>
-  <a href="https://github.com/ishandutta2007/Awesome-Command-Line-Search-Tools/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Command-Line-Search-Tools?style=social" alt="GitHub Stars"/></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Command-Line-Search-Tools/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Command-Line-Search-Tools?style=social" alt="GitHub_Stars"/></a>
   <a href="https://github.com/ishandutta2007/Awesome-Command-Line-Search-Tools/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Command-Line-Search-Tools?style=social" alt="GitHub Forks"/></a>
   <a href="https://github.com/ishandutta2007/Awesome-Command-Line-Search-Tools/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ishandutta2007/Awesome-Command-Line-Search-Tools?color=blue" alt="License"/></a>
   <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
@@ -64,7 +64,7 @@ The following SaaS platforms provide hosted, web-based, or enterprise-scale cros
 
 The following open-source command line search tools, fuzzy finders, and text utilities are ranked by GitHub stargazer count (descending) 🌟.
 
-| Project 📦 | Stars ⭐ | License 📜 | Description & Highlights 💡 |
+| Project 📦 | GitHub_Stars ⭐ | License 📜 | Description & Highlights 💡 |
 | :--- | :---: | :---: | :--- |
 | **[fzf](https://github.com/junegunn/fzf)** | [![Stars](https://img.shields.io/github/stars/junegunn/fzf?style=social&color=white)](https://github.com/junegunn/fzf/stargazers) | MIT | **Command-line fuzzy finder**. The industry standard for interactive filtering. Blazing-fast interactive finder with async streaming, customizable layout, preview windows, and default shell keybindings (`Ctrl+T`, `Ctrl+R`, `Alt+C`). ⚡ |
 | **[ripgrep (rg)](https://github.com/BurntSushi/ripgrep)** | [![Stars](https://img.shields.io/github/stars/BurntSushi/ripgrep?style=social&color=white)](https://github.com/BurntSushi/ripgrep/stargazers) | MIT / Unlicense | **Line-oriented recursive search tool**. The gold standard modern grep replacement written in Rust. Uses SIMD byte scanning, parallelism, respects `.gitignore` rules, searches compressed files (`-z`), and supports PCRE2 (`-P`). 🦀 |
@@ -140,5 +140,5 @@ Your support and contributions keep this repository vibrant, up-to-date, and val
 ## ⚖️ Disclaimer
 
 - This list is community-maintained and curated for educational and productivity reference.
-- Star counts and pricing figures reflect publicly available data as of October 2026 and may change over time.
+- Stars_Counts and pricing figures reflect publicly available data as of October 2026 and may change over time.
 - Always verify licensing and security compliance before indexing proprietary source code in hosted cloud engines.

@@ -1,179 +1,106 @@
-# Awesome-Command-Line-Search-Tools
+# Awesome Command Line Search Tools [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-## Top Command Line Search Tools Ecosystem
-
-
-
-**Curated List of SaaS Products & Open-Source GitHub Projects**
-
-*Focused on Recursive Text Search, Regex Engines & Fuzzy Interactive Filtering*
+> A curated list of fast, modern, and powerful command line search tools, interactive fuzzy finders, regex code search engines, and enterprise code search SaaS platforms.
 
 **Last updated: October 2026**
 
-
-
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Command Line Search Tools**. These tools enable developers to find text patterns across filesystems at speed—from the ubiquitous `grep` and its modern Rust reimplementation `ripgrep` to interactive fuzzy finders that make searching a visual experience.
-
-
-
-**Examples** include grep, ripgrep, The Silver Searcher (ag), ack, ugrep, sift, fzf, platinum searcher (pt), and seekly (the category leaders).
-
-
-
-**Open-source emphasis**: This section is heavily expanded with every major active project for recursive search, regex optimization, and interactive filtering—ideal for developers, sysadmins, and anyone who needs to find a needle in a haystack of code.
-
-
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-
-
-## Table of Contents
-
-- [SaaS/Hosted Platforms](#saas-hosted-platforms)
-
-- [Open-Source GitHub Projects](#open-source-github-projects)
-
-- [How to Contribute](#how-to-contribute)
-
-- [Disclaimer](#disclaimer)
-
-
-
-## SaaS/Hosted Platforms
-
-
-
-- **IDE Search (VS Code, JetBrains, etc.)**
-
-  Integrated development environments include built-in search that respects project structure, but they are not terminal-native and lack the composability of CLI tools. Best for interactive exploration, not scripting.
-
-
-
-## Open-Source GitHub Projects
-
-
-
-- **[ripgrep (rg)](https://github.com/BurntSushi/ripgrep)**
-
-  **Line-oriented search tool that recursively searches directories** (MIT). **The modern standard for code search**—**66,000+ GitHub stars** and the default search tool in VS Code, JetBrains, and many editors. **Key design philosophy**: "ripgrep does the right thing by default" for code search—**recurses automatically**, **respects `.gitignore`**, **skips hidden and binary files** . **Speed comes from three sources**: **SIMD byte scanning**, **a backtracking-free regex engine**, and **parallel directory traversal** . **Benchmark**: In a directory with 40,000 files, `grep` took 30 seconds while `ripgrep` took just under 1 second . **Language-specific filters**: `rg -tpy pattern` limits search to Python files; `rg -Tjs pattern` excludes JavaScript . **PCRE2 support** via `-P` for look-around and backreferences . **Search compressed files** with `-z` (brotli, bzip2, gzip, lz4, lzma, xz, zstandard) . **JSON output** with `--json` for processing with `jq` . **The reference implementation for recursive search** .
-
-
-
-- **[fzf](https://github.com/junegunn/fzf)**
-
-  **A command-line fuzzy finder** (MIT). **The standard for interactive filtering**—**not a search tool itself, but a filter that makes any list searchable**. **Key bindings**: **CTRL-T** for files, **CTRL-R** for history, **ALT-C** for directories . **Schemes for different input types**: `--scheme=path` for file paths, `--scheme=history` for chronological data . **Executes external programs** without leaving fzf via `execute` and `execute-silent` bindings . **Powers interactive modes** in many other tools including zoxide's `zi` and Glimpse's preview . **The most widely adopted fuzzy finder in the terminal ecosystem** .
-
-
-
-- **[ugrep](https://github.com/Genivia/ugrep)**
-
-  **Ultra fast grep with interactive query UI** (BSD-3-Clause). **The most feature-dense grep alternative**—supports **compressed files**, **fuzzy matching**, **archive search**, and **interactive TUI**. **Benchmarks show ripgrep substantially faster than ugrep** in large Chromium checkouts when matching ripgrep's default ignore behavior . **Best for**: users who need maximum feature coverage and archive search .
-
-
-
-- **[The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)**
-
-  **Code searching tool similar to ack, but faster** (Apache-2.0). **The original ack replacement**—**benchmarks show 3–10× speedups over ack on large repos** . **File-type classification** was its core innovation—filter by language before ignore files were standard . **Limitations**: **cannot handle files >2GB**, lacks PCRE2, multiline search, and UTF-16 handling compared to ripgrep . **Best for**: users on legacy systems where ag is already installed and working .
-
-
-
-- **[ack](https://github.com/beyondgrep/ack3)**
-
-  **Grep-like text finder for large trees of text** (Artistic-2.0). **The original "grep for programmers"**—**introduced file-type classification as a first-class concept** (`--perl`, `--ruby`) **before ignore files were the norm** . **Designed for source code** with built-in file type filters. **Limitations**: slower than modern alternatives, no `.gitignore` support. **Best for**: historical interest and Perl-centric workflows .
-
-
-
-- **[Glimpse](https://github.com/PixelKnightDev/Glimpse)**
-
-  **Interactive code search with real-time results and instant editor integration** (MIT). **The TUI-native search experience**—**results update as you type**, with **split-pane layout and file preview** . **Vim-like navigation** with ctrl+j/k. **Press Enter to open the selected file in VS Code, Vim, or your preferred editor** . **CLI mode available** (`glimpse --cli "term"`) for traditional grep-like output. **Best for**: developers who want interactive search with editor integration .
-
-
-
-- **[seekly](https://pypi.org/project/seekly/)**
-
-  **Natural language search for files using semantic code understanding** (PyPI). **The semantic search approach**—**find files using natural language queries** like "find file with custom sorting algorithm" . **Code-aware embeddings** trained for code understanding. **Function-level search** extracts and indexes individual functions for precise results. **Caches embeddings** for quick subsequent searches. **Best for**: discovering code by meaning rather than pattern .
-
-
-
-- **[sift](https://github.com/svent/sift)**
-
-  **A fast and powerful alternative to grep** (GPL-3.0). **The Go-based grep alternative**—supports **multiline search**, **PCRE2**, and **file-type filtering**. **Listed alongside ripgrep and ugrep as a modern alternative** . **Best for**: Go users who want a single-binary grep alternative with advanced features .
-
-
-
-- **[GNU grep](https://www.gnu.org/software/grep/)**
-
-  **GNU grep, egrep and fgrep** (GPL-3.0). **The original**—**half a century of continuous use** . **POSIX-compliant and ubiquitous**—pre-installed on virtually every Unix-like system. **Powerful regex** via extended regular expressions . **Works in pipelines** seamlessly—`tail -f log | grep pattern` . **Limitations**: **up to 10× slower than ripgrep** on recursive searches, no `.gitignore` respect, requires explicit `-r` for recursion . **Best for**: scripts requiring maximum portability and POSIX compliance .
-
-
-
-### Additional Strong Open-Source Options
-
-
-
-- **[fd](https://github.com/sharkdp/fd)** — Simple, fast and user-friendly alternative to `find` (MIT). **The companion to ripgrep**—**intuitive syntax** (`fd PATTERN` instead of `find -iname '*PATTERN*'`), respects `.gitignore`, parallelized directory traversal, and **parallel command execution** with `-x` . **Pairs with ripgrep** in the canonical "modern CLI" stack .
-
-- **[bat](https://github.com/sharkdp/bat)** — Cat clone with syntax highlighting (MIT/Apache-2.0). **The preview companion to fzf**—`--preview 'bat --highlight-line {2} --color=always {1}'` shows syntax-highlighted context for search results  .
-
-- **[platinum searcher (pt)](https://github.com/monochromegane/the_platinum_searcher)** — Code search tool similar to ack and ag (MIT). **The Go-based ag alternative**—single binary, no runtime dependencies. **Note**: Less actively maintained than ripgrep .
-
-- **[sd](https://github.com/chmln/sd)** — Intuitive find & replace CLI (MIT). **Painless regex for replacement**—uses **JavaScript/Python regex syntax** instead of sed/awk quirks. **String-literal mode** for non-regex replacement  .
-
-- **[ruplacer](https://github.com/your-tools/ruplacer)** — Find and replace text in source files (MIT). **Rust-based replacement tool**  .
-
-- Community **n8n** workflows for search result processing and alert automation.
-
-
-
-**Frameworks for building custom systems**: Combine **ripgrep** for recursive content search with **fd** for file discovery, **fzf** for interactive filtering, and **bat** for syntax-highlighted previews—creating the canonical modern CLI search stack that replaces `grep`, `find`, and `cat` .
-
-
-
-## How to Contribute
-
-
-
-1. Fork the repo.
-
-2. Add/edit entries in `README.md` (follow existing format).
-
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-
-4. Submit PR with a short explanation.
-
-
-
-Star the repo if you find it useful!
-
-
-
-## Disclaimer
-
-
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-
-- Command line search tools must respect file permissions and avoid exposing sensitive content in shared terminals or logs.
-
-- **Open-source search tools are mature and production-ready.** ripgrep is the modern default with **66,000+ stars** and is embedded in VS Code and JetBrains . GNU grep remains the POSIX standard for portability . fzf is the most widely adopted fuzzy finder . **These are genuine alternatives to each other** .
-
-- **ripgrep vs. grep: the migration is easy.** ripgrep **respects `.gitignore` by default**, **recurses automatically**, and is **up to 10× faster** on recursive searches . **The only reason to stay on grep is portability**—ripgrep is not POSIX-compliant and may not be installed on every system  .
-
-- **The "modern CLI stack" is a real productivity pattern.** **fd** finds files, **ripgrep** searches content, **fzf** filters interactively, **bat** previews with syntax highlighting . **These four tools together replace `find`, `grep`, and `cat` with a faster, more intuitive workflow** .
-
-- **Interactive search is the emerging category.** Glimpse and seekly represent two different approaches—**Glimpse for TUI-native pattern search** , **seekly for semantic natural-language search** . **Both address the same pain point: static grep output is hard to navigate** .
-
-- **Benchmarks are not universal.** ripgrep is generally fastest, but **performance varies by workload**—file size, pattern complexity, and ignore rules all matter . **Run your own benchmarks against your actual codebase** before declaring a winner .
-
-- Self-hosted open-source solutions require proper shell configuration and integration. **The best search tool is the one you actually use**—muscle memory matters more than benchmark charts.
-
-
+Command line search tools are fundamental to modern developer productivity and systems operations. From blazing-fast recursive pattern matching (`ripgrep`) and terminal fuzzy selection (`fzf`) to AST-aware structural search (`ast-grep`) and enterprise multi-repo code indexing (`Sourcegraph`), this directory catalogs the best CLI search utilities and hosted code exploration platforms available.
 
 ---
 
+## Table of Contents
 
+- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
+- [SaaS & Hosted Enterprise Code Search Platforms](#saas--hosted-enterprise-code-search-platforms)
+- [Open-Source GitHub Projects](#open-source-github-projects)
+- [The Modern CLI Search Stack](#the-modern-cli-search-stack)
+- [How to Contribute](#how-to-contribute)
+- [Disclaimer](#disclaimer)
 
-**Made for developers, sysadmins, and anyone who needs to find text fast.**
+---
 
-Let's make Command Line Search more open, data-driven, and instant.
+## Sector Overview & Market Dynamics
+
+The global enterprise code search and developer discovery market operates as a high-growth vertical within the broader **$5.3B–$7.8B enterprise search market** (growing at an estimated **8.5%–11.3% CAGR**). 
+
+The sector is **highly fragmented**: rather than a winner-take-all monopoly, code search is segmented across terminal-native developer CLI tools, integrated development environment (IDE) search mechanisms, code hosting platform search engines (GitHub, GitLab), and specialized enterprise cross-repository intelligence platforms (Sourcegraph). Furthermore, the emergence of AI code navigation, Retrieval-Augmented Generation (RAG), and AST-based syntactic search continues to decentralize developer workflows across multiple specialized utilities.
+
+---
+
+## SaaS & Hosted Enterprise Code Search Platforms
+
+The following SaaS platforms provide hosted, web-based, or enterprise-scale cross-repository code search, navigation, and code intelligence.
+
+| SaaS Product | Organization / Company Scale (Valuation / Revenue) | Starting Tier Pricing | Free Plan Limits / Free Trial Period | Key Features & Search Capabilities |
+| :--- | :--- | :--- | :--- | :--- |
+| **[GitHub Search & Code Intelligence](https://github.com)** | **$4.01T Market Cap** (Microsoft parent) / **$2.0B+ ARR** (GitHub subsidiary) | **$4.00 per user/month** (GitHub Team plan; Enterprise Cloud at $21/user/month) | **Free forever**: Unlimited public/private repos, 2,000 GitHub Actions CI/CD min/month, 500 MB Packages storage, 120 Codespaces core-hours/month | Native exact regex, symbol navigation, path filters (`path:`, `repo:`), code indexing across global and private repositories. |
+| **[GitLab Advanced Search](https://about.gitlab.com)** | **$8.8B–$9.3B Market Cap** (NASDAQ: GTLB) / **$1.05B TTM Revenue** | **$29.00 per user/month** (GitLab Premium, billed annually) | **60-day free trial** of GitLab Ultimate (unlimited projects, includes full Advanced Search evaluation); Free tier lacks cross-project global search | Elasticsearch/OpenSearch-powered global indexing across code, commits, issues, merge requests, and project wikis. |
+| **[Sourcegraph](https://sourcegraph.com)** | **$2.6B Valuation** (Series D) / **~$35M–$50M ARR** | **$19.00 per user/month** (Enterprise Starter tier, up to 50 devs & 100 repos; Full Enterprise from $16,000/year minimum contract) | **30-day free trial** (unlimited self-hosted or cloud evaluation for teams via sales request); Free public search index on Sourcegraph.com for open source | Universal multi-repository code search, regex, AST/structural matching (Comby), symbol definition jumps, and `src-cli` terminal integration. |
+| **[JetBrains Search & IDE Ecosystem](https://www.jetbrains.com)** | **$700M+ Annual Revenue** / **Bootstrapped (~$1B+ private valuation)** | **$24.90 per user/month** ($249/year IntelliJ IDEA commercial; $979/year All Products Pack) | **30-day free trial** for commercial IDE editions (no credit card required, 45-day extended trial for verified teams); IntelliJ IDEA Community / basic edition free forever | Semantic symbol indexing, "Search Everywhere" (`Double Shift`), structural search and replace (SSR), and local regex caching. |
+
+---
+
+## Open-Source GitHub Projects
+
+The following open-source command line search tools, fuzzy finders, and text utilities are ranked by GitHub stargazer count (descending).
+
+| Project | Stars | License | Description & Highlights |
+| :--- | :---: | :---: | :--- |
+| **[fzf](https://github.com/junegunn/fzf)** | [![Stars](https://img.shields.io/github/stars/junegunn/fzf?style=social&color=white)](https://github.com/junegunn/fzf/stargazers) | MIT | **Command-line fuzzy finder**. The industry standard for interactive filtering. Blazing-fast interactive finder with async streaming, customizable layout, preview windows, and default shell keybindings (`Ctrl+T`, `Ctrl+R`, `Alt+C`). |
+| **[ripgrep (rg)](https://github.com/BurntSushi/ripgrep)** | [![Stars](https://img.shields.io/github/stars/BurntSushi/ripgrep?style=social&color=white)](https://github.com/BurntSushi/ripgrep/stargazers) | MIT / Unlicense | **Line-oriented recursive search tool**. The gold standard modern grep replacement written in Rust. Uses SIMD byte scanning, parallelism, respects `.gitignore` rules, searches compressed files (`-z`), and supports PCRE2 (`-P`). |
+| **[bat](https://github.com/sharkdp/bat)** | [![Stars](https://img.shields.io/github/stars/sharkdp/bat?style=social&color=white)](https://github.com/sharkdp/bat/stargazers) | Apache-2.0 / MIT | **Cat clone with syntax highlighting and Git integration**. Widely paired with `fzf` and `ripgrep` for live syntax-highlighted code previews during interactive search. |
+| **[fd](https://github.com/sharkdp/fd)** | [![Stars](https://img.shields.io/github/stars/sharkdp/fd?style=social&color=white)](https://github.com/sharkdp/fd/stargazers) | Apache-2.0 / MIT | **Fast, user-friendly alternative to `find`**. Features intuitive syntax, parallel directory traversal, `.gitignore` awareness, colorized output, and command execution (`-x`). |
+| **[The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)** | [![Stars](https://img.shields.io/github/stars/ggreer/the_silver_searcher?style=social&color=white)](https://github.com/ggreer/the_silver_searcher/stargazers) | Apache-2.0 | **Code-searching tool similar to ack, but faster**. Written in C, paved the way for modern ignore-aware grep replacements with 3–10× speedups over ack. |
+| **[difftastic](https://github.com/Wilfred/difftastic)** | [![Stars](https://img.shields.io/github/stars/Wilfred/difftastic?style=social&color=white)](https://github.com/Wilfred/difftastic/stargazers) | MIT | **Structural diff tool that understands syntax**. Uses tree-sitter parsers to compare code by syntax tree structure rather than line-by-line diffing, filtering out whitespace noise. |
+| **[ast-grep](https://github.com/ast-grep/ast-grep)** | [![Stars](https://img.shields.io/github/stars/ast-grep/ast-grep?style=social&color=white)](https://github.com/ast-grep/ast-grep/stargazers) | MIT | **Fast CLI tool for code structural search, linting, and rewriting**. Written in Rust, matches code syntax trees rather than plain regex strings, preventing false positives in comments and strings. |
+| **[peco](https://github.com/peco/peco)** | [![Stars](https://img.shields.io/github/stars/peco/peco?style=social&color=white)](https://github.com/peco/peco/stargazers) | MIT | **Simplistic interactive filtering tool**. Go-based terminal interactive filtering utility designed for Unix pipelines and log filtering. |
+| **[sd](https://github.com/chmln/sd)** | [![Stars](https://img.shields.io/github/stars/chmln/sd?style=social&color=white)](https://github.com/chmln/sd/stargazers) | MIT | **Intuitive find & replace CLI (sed alternative)**. Written in Rust, uses standard JavaScript/Python regex syntax with verbatim string replacement and blazing-fast execution. |
+| **[skim (sk)](https://github.com/skim-rs/skim)** | [![Stars](https://img.shields.io/github/stars/skim-rs/skim?style=social&color=white)](https://github.com/skim-rs/skim/stargazers) | MIT | **Fuzzy Finder written in Rust**. A Rust-native alternative to fzf with interactive query support, dynamic multi-selection, and full terminal embedding. |
+| **[ugrep](https://github.com/Genivia/ugrep)** | [![Stars](https://img.shields.io/github/stars/Genivia/ugrep?style=social&color=white)](https://github.com/Genivia/ugrep/stargazers) | BSD-3-Clause | **Ultra fast grep with interactive query TUI**. Highly feature-dense grep alternative supporting fuzzy search, boolean queries (AND/OR/NOT), hex dumps, and nested compressed archives (zip, 7z, tar, gz). |
+| **[platinum searcher (pt)](https://github.com/monochromegane/the_platinum_searcher)** | [![Stars](https://img.shields.io/github/stars/monochromegane/the_platinum_searcher?style=social&color=white)](https://github.com/monochromegane/the_platinum_searcher/stargazers) | MIT | **Multi-platform code search tool**. Written in Go, searches code patterns with cross-encoding support and zero runtime dependencies. |
+| **[sift](https://github.com/svent/sift)** | [![Stars](https://img.shields.io/github/stars/svent/sift?style=social&color=white)](https://github.com/svent/sift/stargazers) | GPL-3.0 | **Fast and powerful alternative to grep**. Go-based CLI search tool supporting multiline regex search, conditions, and custom file type classifications. |
+| **[codespelunker (cs)](https://github.com/boyter/cs)** | [![Stars](https://img.shields.io/github/stars/boyter/cs?style=social&color=white)](https://github.com/boyter/cs/stargazers) | MIT / Dual | **Relevance-ranked code search tool**. CLI and TUI code search utility that understands code structure and ranks results by relevance with zero indexing overhead; features MCP and HTTP server modes. |
+| **[ack](https://github.com/beyondgrep/ack3)** | [![Stars](https://img.shields.io/github/stars/beyondgrep/ack3?style=social&color=white)](https://github.com/beyondgrep/ack3/stargazers) | Artistic-2.0 | **Grep-like search tool optimized for source code**. The pioneering programmer-focused search utility written in Perl; introduced first-class file-type filtering before `.gitignore` standardization. |
+| **[ruplacer](https://github.com/your-tools/ruplacer)** | [![Stars](https://img.shields.io/github/stars/your-tools/ruplacer?style=social&color=white)](https://github.com/your-tools/ruplacer/stargazers) | BSD-3-Clause | **Find and replace text in source files**. Rust CLI that recursively searches directories, prints colored diffs of prospective replacements, and asks for user confirmation. |
+| **[Sourcegraph CLI (src)](https://github.com/sourcegraph/src-cli)** | [![Stars](https://img.shields.io/github/stars/sourcegraph/src-cli?style=social&color=white)](https://github.com/sourcegraph/src-cli/stargazers) | Apache-2.0 | **Command-line interface to Sourcegraph instances**. Execute multi-repository searches, batch changes, and code intelligence queries directly from the terminal. |
+| **[Glimpse](https://github.com/PixelKnightDev/Glimpse)** | [![Stars](https://img.shields.io/github/stars/PixelKnightDev/Glimpse?style=social&color=white)](https://github.com/PixelKnightDev/Glimpse/stargazers) | MIT | **Interactive code search TUI with instant editor integration**. Real-time search with split-pane layout, instant file preview, vim navigation keys, and direct jump-to-editor support. |
+| **[seekly](https://pypi.org/project/seekly/)** | *(PyPI Package)* | MIT | **Natural language semantic code search**. Python CLI utilizing code embeddings to locate functions and files based on natural language queries rather than exact string patterns. |
+| **[GNU grep](https://www.gnu.org/software/grep/)** | *(Coreutils)* | GPL-3.0 | **The foundational Unix text search utility**. POSIX-compliant, universal, and built into every Unix system; ideal for portable pipeline scripts (`tail -f log \| grep pattern`). |
+
+---
+
+## The Modern CLI Search Stack
+
+Modern terminal productivity relies on composing fast, single-purpose Unix tools together:
+
+```bash
+# The canonical interactive code search pipeline:
+# 1. fd locates files quickly respecting .gitignore
+# 2. ripgrep searches file contents with SIMD acceleration
+# 3. fzf provides an interactive fuzzy selection UI
+# 4. bat renders a syntax-highlighted preview of matched lines
+
+rg --color=always --line-number --no-heading --smart-case "" |
+  fzf --ansi \
+      --color "hl:-1:underline,hl+:-1:underline:reverse" \
+      --delimiter : \
+      --preview 'bat --color=always {1} --highlight-line {2}' \
+      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+```
+
+---
+
+## How to Contribute
+
+1. Fork this repository.
+2. Add or update entries in `README.md` maintaining alphabetical order or star-sorted order as appropriate.
+3. Keep descriptions factual, link directly to official repositories, and ensure license details are accurate.
+4. Submit a Pull Request with a clear description of the addition.
+
+---
+
+## Disclaimer
+
+- This list is community-maintained and curated for educational and productivity reference.
+- Star counts and pricing figures reflect publicly available data as of October 2026 and may change over time.
+- Always verify licensing and security compliance before indexing proprietary source code in hosted cloud engines.

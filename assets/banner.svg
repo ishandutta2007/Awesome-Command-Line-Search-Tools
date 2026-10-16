@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+
+    <linearGradient id="neon-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#4facfe"/>
+      <stop offset="100%" stop-color="#00f2fe"/>
+      <animate attributeName="x1" values="0%;100%;0%" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="100%;200%;100%" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <linearGradient id="laser-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      @keyframes radarSweep {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes floatBeam {
+        0%, 100% { transform: translateY(0px) scaleX(1); opacity: 0.35; }
+        50% { transform: translateY(-12px) scaleX(1.08); opacity: 0.65; }
+      }
+      @keyframes pulseGrid {
+        0%, 100% { opacity: 0.12; }
+        50% { opacity: 0.28; }
+      }
+      @keyframes blinkCursor {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      @keyframes waveScan {
+        0% { transform: translateX(-400px); }
+        100% { transform: translateX(1200px); }
+      }
+      .sweep-arm {
+        transform-origin: 1040px 170px;
+        animation: radarSweep 10s linear infinite;
+      }
+      .beam-shape {
+        animation: floatBeam 6s ease-in-out infinite;
+      }
+      .grid-pattern {
+        animation: pulseGrid 5s ease-in-out infinite;
+      }
+      .cursor-blink {
+        animation: blinkCursor 1s infinite;
+      }
+      .laser-line {
+        animation: waveScan 7s ease-in-out infinite;
+      }
+      .title-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 900;
+        letter-spacing: -1px;
+      }
+      .sub-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+      .code-mono {
+        font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="340" rx="16" fill="url(#bg-grad)"/>
+
+  <!-- Background Animated Cyber Grid -->
+  <g class="grid-pattern" stroke="#38bdf8" stroke-width="0.8">
+    <line x1="0" y1="60" x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="120" y1="0" x2="120" y2="340"/>
+    <line x1="240" y1="0" x2="240" y2="340"/>
+    <line x1="360" y1="0" x2="360" y2="340"/>
+    <line x1="480" y1="0" x2="480" y2="340"/>
+    <line x1="600" y1="0" x2="600" y2="340"/>
+    <line x1="720" y1="0" x2="720" y2="340"/>
+    <line x1="840" y1="0" x2="840" y2="340"/>
+    <line x1="960" y1="0" x2="960" y2="340"/>
+    <line x1="1080" y1="0" x2="1080" y2="340"/>
+  </g>
+
+  <!-- Animated Decorative Background Beam (Behind Content) -->
+  <g class="beam-shape">
+    <ellipse cx="600" cy="170" rx="420" ry="85" fill="#38bdf8" opacity="0.08" filter="url(#glow)"/>
+    <ellipse cx="250" cy="120" rx="280" ry="50" fill="#818cf8" opacity="0.07" filter="url(#glow)"/>
+  </g>
+
+  <!-- Animated Laser Scan Line (Stays strictly subtle in background) -->
+  <g opacity="0.4">
+    <line class="laser-line" x1="0" y1="0" x2="0" y2="340" stroke="url(#laser-glow)" stroke-width="2" filter="url(#soft-glow)"/>
+  </g>
+
+  <!-- Radar Search Widget (Background decorative accent on right) -->
+  <g opacity="0.55">
+    <circle cx="1040" cy="170" r="110" fill="none" stroke="#1e293b" stroke-width="2"/>
+    <circle cx="1040" cy="170" r="80" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <circle cx="1040" cy="170" r="50" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.4"/>
+    <circle cx="1040" cy="170" r="20" fill="none" stroke="#00f2fe" stroke-width="1" opacity="0.6"/>
+    <circle cx="1040" cy="170" r="4" fill="#38bdf8"/>
+    
+    <!-- Rotating Sweep Beam -->
+    <g class="sweep-arm">
+      <line x1="1040" y1="170" x2="1150" y2="170" stroke="#00f2fe" stroke-width="2" filter="url(#soft-glow)"/>
+      <polygon points="1040,170 1150,140 1150,170" fill="url(#laser-glow)" opacity="0.25"/>
+    </g>
+
+    <!-- Detected Target Blips with soft pulse -->
+    <circle cx="1090" cy="130" r="4.5" fill="#22c55e" filter="url(#soft-glow)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="995" cy="210" r="3.5" fill="#38bdf8" filter="url(#soft-glow)">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1065" cy="225" r="4" fill="#a855f7" filter="url(#soft-glow)">
+      <animate attributeName="opacity" values="0.1;0.9;0.1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- FOREGROUND: Terminal Icon & Search Badge -->
+  <g transform="translate(60, 48)">
+    <rect x="0" y="0" width="170" height="32" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="16" cy="16" r="5" fill="#ef4444"/>
+    <circle cx="32" cy="16" r="5" fill="#eab308"/>
+    <circle cx="48" cy="16" r="5" fill="#22c55e"/>
+    <text x="66" y="21" fill="#94a3b8" class="code-mono" font-size="12" font-weight="600">CLI_SEARCH</text>
+  </g>
+
+  <!-- FOREGROUND: Main Title -->
+  <text x="60" y="145" fill="#ffffff" class="title-text" font-size="44" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.8))">
+    Awesome <tspan fill="url(#neon-teal)">Command Line</tspan> Search Tools
+  </text>
+
+  <!-- FOREGROUND: Subtitle -->
+  <text x="60" y="195" fill="#94a3b8" class="sub-text" font-size="17">
+    High-Performance Regex Engines • Recursive Searchers • Interactive Fuzzy Finders • AST Code Discovery
+  </text>
+
+  <!-- FOREGROUND: Interactive Terminal Pill Deck -->
+  <g transform="translate(60, 230)">
+    <!-- Pill 1: ripgrep -->
+    <rect x="0" y="0" width="110" height="38" rx="8" fill="#111827" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="14" y="24" fill="#38bdf8" class="code-mono" font-size="14" font-weight="700">rg</text>
+    <text x="40" y="23" fill="#64748b" class="code-mono" font-size="12">regex</text>
+
+    <!-- Pill 2: fzf -->
+    <rect x="122" y="0" width="114" height="38" rx="8" fill="#111827" stroke="#a855f7" stroke-width="1.2"/>
+    <text x="136" y="24" fill="#c084fc" class="code-mono" font-size="14" font-weight="700">fzf</text>
+    <text x="168" y="23" fill="#64748b" class="code-mono" font-size="12">fuzzy</text>
+
+    <!-- Pill 3: fd -->
+    <rect x="248" y="0" width="105" height="38" rx="8" fill="#111827" stroke="#34d399" stroke-width="1.2"/>
+    <text x="262" y="24" fill="#34d399" class="code-mono" font-size="14" font-weight="700">fd</text>
+    <text x="288" y="23" fill="#64748b" class="code-mono" font-size="12">find</text>
+
+    <!-- Pill 4: bat -->
+    <rect x="365" y="0" width="115" height="38" rx="8" fill="#111827" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="379" y="24" fill="#fbbf24" class="code-mono" font-size="14" font-weight="700">bat</text>
+    <text x="412" y="23" fill="#64748b" class="code-mono" font-size="12">preview</text>
+
+    <!-- Pill 5: ast-grep -->
+    <rect x="492" y="0" width="145" height="38" rx="8" fill="#111827" stroke="#ec4899" stroke-width="1.2"/>
+    <text x="506" y="24" fill="#f472b6" class="code-mono" font-size="14" font-weight="700">ast-grep</text>
+    <text x="580" y="23" fill="#64748b" class="code-mono" font-size="12">ast</text>
+
+    <!-- Interactive Prompt Demo -->
+    <rect x="650" y="0" width="260" height="38" rx="8" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+    <text x="664" y="24" fill="#38bdf8" class="code-mono" font-size="13" font-weight="700">$</text>
+    <text x="680" y="24" fill="#f1f5f9" class="code-mono" font-size="13">rg "pattern" | fzf</text>
+    <rect class="cursor-blink" x="840" y="11" width="8" height="16" fill="#38bdf8"/>
+  </g>
+
+  <!-- Modern Accent Border -->
+  <rect x="0.75" y="0.75" width="1198.5" height="338.5" rx="15.25" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.3"/>
+</svg>
